@@ -1,87 +1,50 @@
-<!-- ================= PRO MAX SINGLE PAGE PORTFOLIO ================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shrisha Patil | Portfolio</title>
-
-<!-- Google Font -->
+<title>Shrisha Patil | Advanced Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{color:white;overflow-x:hidden;background:black}
 
-body{color:white;overflow-x:hidden}
-
-/* ===== Animated Live Background ===== */
-body::before{
-content:"";
-position:fixed;
-width:100%;height:100%;
-background:linear-gradient(270deg,#ff00cc,#3333ff,#00ffcc,#ff6600);
-background-size:800% 800%;
-animation:liveBG 12s ease infinite;
-z-index:-2;
-}
-
-@keyframes liveBG{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-
-/* Floating particles */
 canvas{position:fixed;top:0;left:0;z-index:-1}
 
 header{
-position:fixed;width:100%;
-display:flex;justify-content:space-between;
-padding:20px 40px;
-background:rgba(0,0,0,0.3);
-backdrop-filter:blur(10px);
+position:fixed;width:100%;display:flex;justify-content:space-between;
+padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px)
 }
 
-nav a{
-margin:0 10px;
-color:white;text-decoration:none;font-weight:500;
-}
+nav a{margin:0 10px;color:white;text-decoration:none}
 
 section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px}
 
-h1{font-size:3rem}
+h1{font-size:3rem;margin-bottom:10px}
 
-.profile{
-width:160px;border-radius:50%;margin:20px;border:4px solid white
-}
+.profile{width:160px;border-radius:50%;border:3px solid white;margin:20px}
 
-/* Glass cards */
 .container{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+
 .card{
 padding:20px;width:250px;
 background:rgba(255,255,255,0.1);
 backdrop-filter:blur(12px);
 border-radius:20px;
-transition:0.4s;
+transition:0.4s
 }
+
 .card:hover{transform:translateY(-10px) scale(1.05)}
 
-button{
-padding:10px 20px;border:none;border-radius:20px;cursor:pointer;margin-top:20px
-}
-
-footer{text-align:center;padding:20px}
-
-/* Dark mode */
-.dark{background:black}
+img.gallery{width:200px;border-radius:10px;margin:10px}
 
 </style>
 </head>
 
 <body>
 
-<!-- PARTICLES CANVAS -->
-<canvas id="particles"></canvas>
+<canvas id="bg"></canvas>
 
 <header>
 <h2>Shrisha</h2>
@@ -94,44 +57,38 @@ footer{text-align:center;padding:20px}
 </nav>
 </header>
 
-<!-- HOME -->
 <section id="home">
 <img src="images/profile.jpg" class="profile">
 <h1>Hello, I'm Shrisha Patil</h1>
-<p>Passionate Developer 🚀</p>
-<button onclick="toggleDark()">Toggle Mode</button>
+<p>Creative Developer 🚀</p>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <h1>About Me</h1>
 <div class="container">
 <div class="card">Education: MIT Vishwaprayag University</div>
-<div class="card">Interests: AI, Web Development</div>
+<div class="card">AI & Web Development</div>
 <div class="card">Goal: Software Engineer</div>
-<div class="card">Strengths: Creativity, Problem Solving</div>
+<div class="card">Creative Problem Solver</div>
 </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
 <h1>Projects</h1>
 <div class="container">
 <div class="card">AI4A Project</div>
-<div class="card">ACE Coursera Project</div>
+<div class="card">ACE Project</div>
 </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery">
 <h1>Gallery</h1>
 <div class="container">
-<img src="images/cert1.jpg" class="profile">
-<img src="images/cert2.jpg" class="profile">
+<img src="images/cert1.jpg" class="gallery">
+<img src="images/cert2.jpg" class="gallery">
 </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
 <h1>Contact</h1>
 <p>Email: ShrishPatil@email.com</p>
@@ -139,46 +96,35 @@ footer{text-align:center;padding:20px}
 <p>LinkedIn | GitHub</p>
 </section>
 
-<footer>
-<p>© 2026 Shrisha Patil</p>
-</footer>
-
 <script>
-function toggleDark(){document.body.classList.toggle('dark')}
-
-/* ===== PARTICLES ANIMATION ===== */
-const canvas=document.getElementById('particles');
+const canvas=document.getElementById('bg');
 const ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-let particles=[];
-for(let i=0;i<80;i++){
-particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2+Math.random()*3,d:Math.random()*2});
+let lines=[];
+for(let i=0;i<50;i++){
+lines.push({x:Math.random()*canvas.width,amp:20+Math.random()*50,freq:0.01+Math.random()*0.02,phase:Math.random()*Math.PI});
 }
 
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle='white';
+ctx.strokeStyle='rgba(0,255,255,0.6)';
+
+lines.forEach(l=>{
 ctx.beginPath();
-for(let i=0;i<particles.length;i++){
-let p=particles[i];
-ctx.moveTo(p.x,p.y);
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
+for(let x=0;x<canvas.width;x++){
+let y=canvas.height/2 + Math.sin(x*l.freq + l.phase)*l.amp;
+ctx.lineTo(x,y);
 }
-ctx.fill();
-update();
+ctx.stroke();
+l.phase+=0.02;
+});
+
+requestAnimationFrame(draw);
 }
 
-function update(){
-for(let i=0;i<particles.length;i++){
-let p=particles[i];
-p.y+=p.d;
-if(p.y>canvas.height){p.y=0;p.x=Math.random()*canvas.width}
-}
-}
-
-setInterval(draw,33);
+draw();
 </script>
 
 </body>
