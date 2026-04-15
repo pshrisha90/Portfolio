@@ -150,7 +150,3 @@ footer {
   transform: scale(1.1);
   box-shadow: 0 0 15px #00ffff;
 }
-.card {
-  text-align: center;
-  overflow: hidden;   /* prevents image going outside */
-}
