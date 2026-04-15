@@ -135,9 +135,14 @@ footer {
   }
 }
 .project-img {
-  width: 200px;
+  width: 180px;        /* fixed small size */
+  height: auto;
+  max-width: 100%;     /* prevents overflow */
   border-radius: 10px;
   margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   transition: 0.3s;
 }
 
@@ -145,8 +150,7 @@ footer {
   transform: scale(1.1);
   box-shadow: 0 0 15px #00ffff;
 }
-
 .card {
   text-align: center;
+  overflow: hidden;   /* prevents image going outside */
 }
-
