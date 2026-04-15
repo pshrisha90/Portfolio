@@ -76,10 +76,6 @@ nav a {
   text-align:center;
   transition:0.3s;
 }
-.card {
-  text-align: center;
-  overflow: hidden;   /* prevents image going outside */
-}
 
 .card:hover {
   transform: translateY(-10px);
@@ -139,18 +135,14 @@ footer {
   }
 }
 .project-img {
-  width: 180px;        /* fixed small size */
-  height: auto;
-  max-width: 100%;     /* prevents overflow */
+  width: 200px;
+  height: 140px;
+  object-fit: cover;   /* VERY IMPORTANT */
   border-radius: 10px;
-  margin-top: 10px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  transition: 0.3s;
+  margin: 10px auto;
 }
 
-.project-img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px #00ffff;
+.card {
+  text-align: center;
 }
