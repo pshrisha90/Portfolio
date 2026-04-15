@@ -45,6 +45,23 @@ img.gallery:hover{transform:scale(1.1);box-shadow:0 0 15px #00ffff}
 </head>
 
 <body>
+<script>
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    let circle = document.createElement('span');
+    circle.classList.add('ripple');
+    this.appendChild(circle);
+
+    let x = e.clientX - this.offsetLeft;
+    let y = e.clientY - this.offsetTop;
+
+    circle.style.left = x + 'px';
+    circle.style.top = y + 'px';
+
+    setTimeout(() => circle.remove(), 500);
+  });
+});
+</script>
 
 <canvas id="bg"></canvas>
 
