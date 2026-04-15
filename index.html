@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shrisha Patil | Advanced Portfolio</title>
+<title>Shrisha Patil | Cyber Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -14,30 +14,32 @@ canvas{position:fixed;top:0;left:0;z-index:-1}
 
 header{
 position:fixed;width:100%;display:flex;justify-content:space-between;
-padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px)
+padding:20px 40px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px)
 }
 
-nav a{margin:0 10px;color:white;text-decoration:none}
+nav a{margin:0 10px;color:#00ffff;text-decoration:none}
 
 section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px}
 
 h1{font-size:3rem;margin-bottom:10px}
 
-.profile{width:160px;border-radius:50%;border:3px solid white;margin:20px}
+.profile{width:160px;border-radius:50%;border:3px solid #00ffff;margin:20px}
 
 .container{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
 
 .card{
 padding:20px;width:250px;
-background:rgba(255,255,255,0.1);
+background:rgba(0,255,255,0.08);
+border:1px solid rgba(0,255,255,0.3);
 backdrop-filter:blur(12px);
 border-radius:20px;
 transition:0.4s
 }
 
-.card:hover{transform:translateY(-10px) scale(1.05)}
+.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 20px #00ffff}
 
-img.gallery{width:200px;border-radius:10px;margin:10px}
+img.gallery{width:200px;border-radius:10px;margin:10px;transition:0.3s}
+img.gallery:hover{transform:scale(1.1);box-shadow:0 0 15px #00ffff}
 
 </style>
 </head>
@@ -47,7 +49,7 @@ img.gallery{width:200px;border-radius:10px;margin:10px}
 <canvas id="bg"></canvas>
 
 <header>
-<h2>Shrisha</h2>
+<h2 style="color:#00ffff">Shrisha</h2>
 <nav>
 <a href="#home">Home</a>
 <a href="#about">About</a>
@@ -58,18 +60,18 @@ img.gallery{width:200px;border-radius:10px;margin:10px}
 </header>
 
 <section id="home">
-<img src="/assets/profile.png" class="profile">
+<img src="images/profile.jpg" class="profile">
 <h1>Hello, I'm Shrisha Patil</h1>
-<p>Creative Developer 🚀</p>
+<p>Cyber Creative Developer ⚡</p>
 </section>
 
 <section id="about">
 <h1>About Me</h1>
 <div class="container">
-<div class="card">Education: MIT Vishwaprayag University</div>
+<div class="card">MIT Vishwaprayag University</div>
 <div class="card">AI & Web Development</div>
-<div class="card">Goal: Software Engineer</div>
-<div class="card">Creative Problem Solver</div>
+<div class="card">Future Software Engineer</div>
+<div class="card">Problem Solver</div>
 </div>
 </section>
 
@@ -102,23 +104,45 @@ const ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-let lines=[];
-for(let i=0;i<50;i++){
-lines.push({x:Math.random()*canvas.width,amp:20+Math.random()*50,freq:0.01+Math.random()*0.02,phase:Math.random()*Math.PI});
+let nodes=[];
+for(let i=0;i<80;i++){
+nodes.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,dx:Math.random()-0.5,dy:Math.random()-0.5});
 }
 
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.strokeStyle='rgba(0,255,255,0.6)';
 
-lines.forEach(l=>{
+// draw nodes
+nodes.forEach(n=>{
 ctx.beginPath();
-for(let x=0;x<canvas.width;x++){
-let y=canvas.height/2 + Math.sin(x*l.freq + l.phase)*l.amp;
-ctx.lineTo(x,y);
-}
+ctx.fillStyle="#00ffff";
+ctx.arc(n.x,n.y,2,0,Math.PI*2);
+ctx.fill();
+});
+
+// connect lines
+for(let i=0;i<nodes.length;i++){
+for(let j=i+1;j<nodes.length;j++){
+let dx=nodes[i].x-nodes[j].x;
+let dy=nodes[i].y-nodes[j].y;
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<120){
+ctx.strokeStyle="rgba(0,255,255,"+(1-dist/120)+")";
+ctx.beginPath();
+ctx.moveTo(nodes[i].x,nodes[i].y);
+ctx.lineTo(nodes[j].x,nodes[j].y);
 ctx.stroke();
-l.phase+=0.02;
+}
+}
+}
+
+// move nodes
+nodes.forEach(n=>{
+n.x+=n.dx;
+n.y+=n.dy;
+if(n.x<0||n.x>canvas.width)n.dx*=-1;
+if(n.y<0||n.y>canvas.height)n.dy*=-1;
 });
 
 requestAnimationFrame(draw);
