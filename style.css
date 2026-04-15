@@ -134,15 +134,14 @@ footer {
     opacity: 0;
   }
 }
-.project-img {
-  width: 200px;
-  height: 140px;
-  object-fit: cover;   /* VERY IMPORTANT */
+.card img {
+  width: 200px !important;
+  height: 140px !important;
+  object-fit: cover;
   border-radius: 10px;
   display: block;
   margin: 10px auto;
 }
-
 .card {
   text-align: center;
 }
