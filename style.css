@@ -134,16 +134,3 @@ footer {
     opacity: 0;
   }
 }
-.card img {
-  width: 200px !important;
-  height: auto !important;   /* 🔥 change this */
-  max-width: 100%;
-  object-fit: contain;       /* 🔥 IMPORTANT */
-  border-radius: 10px;
-  display: block;
-  margin: 10px auto;
-}
-.card {
-  max-width: 300px;
-  margin: auto;
-}
