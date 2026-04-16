@@ -147,3 +147,7 @@ footer {
   height: auto;
   border-radius: 8px;
 }
+.card {
+  width: 350px;   /* increase from small */
+  margin: auto;
+}
