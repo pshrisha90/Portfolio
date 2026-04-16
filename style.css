@@ -134,3 +134,13 @@ footer {
     opacity: 0;
   }
 }
+.img-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.img-row img {
+  width: 120px;
+  border-radius: 8px;
+}
