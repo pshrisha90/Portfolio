@@ -136,11 +136,14 @@ footer {
 }
 .img-row {
   display: flex;
-  gap: 10px;
   justify-content: center;
+  align-items: center;
+  gap: 15px;              /* space between images */
+  flex-wrap: nowrap;      /* force side by side */
 }
 
 .img-row img {
   width: 120px;
+  height: auto;
   border-radius: 8px;
 }
