@@ -147,7 +147,21 @@ footer {
   height: auto;
   border-radius: 8px;
 }
-.card {
-  width: 350px;   /* increase from small */
+/* make this card bigger ONLY for projects */
+.project-card {
+  width: 400px;
   margin: auto;
+}
+
+/* force images side by side */
+.img-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* control image size */
+.img-row img {
+  width: 150px;
+  border-radius: 8px;
 }
